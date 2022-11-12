@@ -1,22 +1,53 @@
-import React from 'react';
-import { View, StyleSheet, Text, Button } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet } from 'react-native';
+import { Text, Input, Button } from '@rneui/themed';
+import Spacer from '../components/Spacer';
 
 const SignupScreen = ({ navigation }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
-    <>
-      <Text style={{ fontSize: 48 }}>SignupScreen</Text>
-      <Button
-        title="Go to signin"
-        onPress={() => navigation.navigate('Signin')}
+    <View style={styles.container}>
+      <Spacer>
+        <Text h3>Sign up for tracker</Text>
+      </Spacer>
+      <Input
+        label="email"
+        value={email}
+        onChangeText={setEmail}
+        autoCapitalize="none"
+        autoCorrect={false}
       />
-      <Button
-        title="Go to mainflow"
-        onPress={() => navigation.navigate('mainFlow')}
+      <Spacer />
+      <Input
+        secureTextEntry
+        label="password"
+        value={password}
+        onChangeText={setPassword}
+        autoCapitalize="none"
+        autoCorrect={false}
       />
-    </>
+      <Spacer />
+      <Button title="Signup" />
+      <Spacer />
+    </View>
   );
 };
 
-const styles = StyleSheet.create({});
+SignupScreen.navigationOptions = () => {
+  return {
+    headerShown: false
+  };
+};
+
+const styles = StyleSheet.create({
+  container: {
+    // borderColor: 'red',
+    // borderWidth: 10,
+    flex: 1,
+    justifyContent: 'center'
+  }
+});
 
 export default SignupScreen;
