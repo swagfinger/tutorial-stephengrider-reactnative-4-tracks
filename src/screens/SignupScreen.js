@@ -3,7 +3,12 @@ import { View, StyleSheet } from 'react-native';
 import { Text, Input, Button } from '@rneui/themed';
 import Spacer from '../components/Spacer';
 
+//context
+import { Context as AuthContext } from '../context/AuthContext';
+
 const SignupScreen = ({ navigation }) => {
+  const { state, signup } = useContext(AuthContext);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -29,7 +34,7 @@ const SignupScreen = ({ navigation }) => {
         autoCorrect={false}
       />
       <Spacer />
-      <Button title="Signup" />
+      <Button title="Signup" onPress={() => signup({ email, password })} />
       <Spacer />
     </View>
   );
