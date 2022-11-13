@@ -13,6 +13,8 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import { Provider as AuthProvider } from './src/context/AuthContext';
 
+import { setNavigator } from './src/navigationRef';
+
 const switchNavigator = createSwitchNavigator({
   //loginFlow and mainFlow are groupings...
   loginFlow: createStackNavigator({
@@ -31,10 +33,15 @@ const switchNavigator = createSwitchNavigator({
 
 const App = createAppContainer(switchNavigator);
 
+// app creates a ref to 'navigator' which it receives from react native, and sets it on 'setNavigator' (the imported navigator function)
 export default () => {
   return (
     <AuthProvider>
-      <App />
+      <App
+        ref={(navigator) => {
+          setNavigator(navigator);
+        }}
+      />
     </AuthProvider>
   );
 };
