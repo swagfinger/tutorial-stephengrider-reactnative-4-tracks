@@ -40,3 +40,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 ## navigation
 
 -<App> creates a ref to 'navigator' which it receives from react native, and sets it on 'setNavigator' (the imported navigator function)
+
+- using NavigationEvents <NavigationEvents onWillBlur={clearErrorMessage} /> to clear messages before switching screens
+
+- is there a token in AsyncStorage?
+  if yes - navigate to TrackList
+  if no - navigate to Signup
