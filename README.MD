@@ -9,7 +9,7 @@
 
 ## dependencies
 
-- react-native-elements
+- react-native-elements has been changed to @rneui/themed
 
 ```
 npm install @rneui/themed @rneui/base --legacy-peer-deps
