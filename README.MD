@@ -1,5 +1,7 @@
 ## REACT NATIVE - Tracks
 
+- NOTE: the udemy project is using expo@40 / react-navigation@4 -> this repository updates the dependencies to latest expo@47 / react-navigatio@6
+
 - install server for this project, https://github.com/swagfinger/stephengrider-reactnative-4-express-mongodb.git
 - make sure there is a mongodb database
 - use tunnelling to listen to localhost url: 'ngrok http 3000'
@@ -80,3 +82,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 ### authentication
 
 https://reactnavigation.org/docs/auth-flow
+
+### todo:
+
+- when sign-in/signout looses focus, the clear content script was removed and still needs to be readded.
