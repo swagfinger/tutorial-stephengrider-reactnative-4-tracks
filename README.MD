@@ -79,6 +79,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 - signout by clearing the jwt
 
+### react-native-maps
+
+- you should install react-native-maps
+
+```
+npx expo install react-native-maps
+```
+
 ### authentication
 
 https://reactnavigation.org/docs/auth-flow
