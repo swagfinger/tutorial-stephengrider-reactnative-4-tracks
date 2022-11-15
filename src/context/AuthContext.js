@@ -1,7 +1,7 @@
 import createDataContext from './createDataContext';
 import trackerApi from '../api/tracker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { navigate } from '../navigationRef';
+import * as RootNavigation from '../navigationRef';
 
 const authReducer = (state, action) => {
   switch (action.type) {
@@ -10,7 +10,11 @@ const authReducer = (state, action) => {
 
     //using 'signin' for both 'signin' and 'signup'
     case 'signin':
-      return { errorMessage: '', token: action.payload };
+      return { token: action.payload, errorMessage: '' };
+
+    case 'signout':
+      return { token: null, errorMessage: '' };
+
     case 'clear_error_message':
       return { ...state, errorMessage: '' };
     default:
@@ -22,9 +26,9 @@ const tryLocalSignin = (dispatch) => async () => {
   const token = await AsyncStorage.getItem('token');
   if (token) {
     dispatch({ type: 'signin', payload: token });
-    navigate('TrackList');
+    RootNavigation.navigate('TrackListFlow', { screen: 'TrackList' });
   } else {
-    navigate('Signup');
+    RootNavigation.navigate('Signin');
   }
 };
 
@@ -43,7 +47,7 @@ const signup =
       await AsyncStorage.setItem('token', response.data.token);
       dispatch({ type: 'signin', payload: response.data.token });
 
-      navigate('TrackList');
+      RootNavigation.navigate('TrackListFlow', { screen: 'TrackList' });
 
       //to get token at later stage...
       //await AsyncStorage.getItem('token');
@@ -76,7 +80,7 @@ const signin =
         payload: response.data.token
       });
 
-      navigate('TrackList');
+      RootNavigation.navigate('MainFlow', { screen: 'TrackList' });
     } catch (err) {
       console.log(err);
       dispatch({
@@ -88,14 +92,26 @@ const signin =
     //if signing up fails, error handling
   };
 
-const signout = (dispatch) => {
-  return () => {
-    //signout
-  };
+const signout = (dispatch) => async () => {
+  //signout
+  try {
+    await AsyncStorage.removeItem('token');
+    dispatch({ type: 'signout' });
+    console.log('dispatch signout...');
+    RootNavigation.navigate('LoginFlow', { screen: 'Signin' });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: 'add_error',
+      payload: 'Something went wrong with signout'
+    });
+  }
 };
 
-export const { Provider, Context } = createDataContext(
+export const { Context, Provider } = createDataContext(
   authReducer, //reducer
+
   { signin, signout, signup, clearErrorMessage, tryLocalSignin }, //context methods
+
   { token: null, errorMessage: '' } //initial state
 );

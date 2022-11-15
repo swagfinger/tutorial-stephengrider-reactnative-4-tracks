@@ -1,6 +1,4 @@
 import React, { useContext } from 'react';
-import { NavigationEvents } from 'react-navigation';
-
 import { View, StyleSheet, Text } from 'react-native';
 
 import AuthForm from '../components/AuthForm';
@@ -14,12 +12,6 @@ const SigninScreen = () => {
 
   return (
     <View style={styles.container}>
-      <NavigationEvents
-        // onWillFocus={() => {}}
-        // onDidFocus={() => {}}
-        onWillBlur={clearErrorMessage} //clear message here...
-        // onDidBlur={() => {}}
-      />
       <AuthForm
         headerText="Sign into your account"
         errorMessage={state.errorMessage}
@@ -27,8 +19,8 @@ const SigninScreen = () => {
         submitButtonText="Sign in"
       />
       <NavLink
-        text="Dont have an account? Sign up instead"
         routeName="Signup"
+        text="Dont have an account? Sign up instead"
       />
     </View>
   );

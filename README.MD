@@ -1,5 +1,31 @@
 ## REACT NATIVE - Tracks
 
+- install server for this project, https://github.com/swagfinger/stephengrider-reactnative-4-express-mongodb.git
+- make sure there is a mongodb database
+- use tunnelling to listen to localhost url: 'ngrok http 3000'
+- take forwarding url after running ngrok command and paste in src/api/tracker.js baseURL (this step needs to be done everytime you re-run ngrok)
+
+## upgrading to expo 47 / react-navigation@6
+
+### dependencies
+
+- "react-native-tab-view"
+
+## Running NGROK
+
+```cmd
+"ngrok http 3000"
+
+note: when the ngrok url changes after running the above command, you need to update the url:
+src/api/tracker.js
+NB:
+- ngrok given url eg. https://xxxxxxxxxxxxxxxxxxxxxx.jp.ngrok.io
+- ngrok give you a url which is the tunneling url, you should open this link...
+- there is a safety screen that asks you if you want to proceed, you need to accept this prompt
+
+
+```
+
 ### navigation types (reactnavigation.org/docs/en/api-reference.html)
 
 - Stack navigator - back and forward between screens
@@ -39,6 +65,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 ## navigation
 
+- react navigation is now version @6 https://reactnavigation.org/
+
 -<App> creates a ref to 'navigator' which it receives from react native, and sets it on 'setNavigator' (the imported navigator function)
 
 - using NavigationEvents <NavigationEvents onWillBlur={clearErrorMessage} /> to clear messages before switching screens
@@ -46,3 +74,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 - is there a token in AsyncStorage?
   if yes - navigate to TrackList
   if no - navigate to Signup
+
+- signout by clearing the jwt
+
+### authentication
+
+https://reactnavigation.org/docs/auth-flow

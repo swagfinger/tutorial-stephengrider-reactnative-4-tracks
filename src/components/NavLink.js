@@ -2,12 +2,11 @@ import React from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 // import { Text } from '@rneui/themed';
 import Spacer from './Spacer';
+import * as RootNavigation from '../navigationRef';
 
-import { withNavigation } from 'react-navigation'; //helps with navigating when have a childcompnent doesnt have 'navigation'
-
-const NavLink = ({ navigation, text, routeName }) => {
+const NavLink = ({ text, routeName }) => {
   return (
-    <TouchableOpacity onPress={() => navigation.navigate({ routeName })}>
+    <TouchableOpacity onPress={() => RootNavigation.navigate(routeName)}>
       <Spacer>
         <Text style={styles.link}>{text}</Text>
       </Spacer>
@@ -21,4 +20,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default withNavigation(NavLink);
+export default NavLink;

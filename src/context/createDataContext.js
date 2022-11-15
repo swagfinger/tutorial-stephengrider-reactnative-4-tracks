@@ -2,8 +2,10 @@ import React, { useReducer } from 'react';
 
 //receives these 3 props
 export default (reducer, actions, defaultValue) => {
+  //CONTEXT
   const Context = React.createContext();
 
+  //PROVIDER - has acess to state , actions
   const Provider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, defaultValue);
 
