@@ -87,6 +87,29 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 npx expo install react-native-maps
 ```
 
+- and expo-location
+
+```
+npx expo-cli install expo-location
+```
+
+- to reset permissions for testing...google it
+
+### Location Request
+
+```js
+const startWatching = async () => {
+  try {
+    const { granted } = await requestPermissionsAsync();
+    if (!granted) {
+      throw new Error('Location permission not granted');
+    }
+  } catch (e) {
+    setErr(e);
+  }
+};
+```
+
 ### authentication
 
 https://reactnavigation.org/docs/auth-flow
