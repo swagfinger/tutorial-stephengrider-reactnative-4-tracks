@@ -29,7 +29,7 @@ function LoginFlowScreen() {
 const TrackListFlow = createNativeStackNavigator();
 function TrackListFlowScreen() {
   return (
-    <TrackListFlow.Navigator screenOptions={{ headerShown: false }}>
+    <TrackListFlow.Navigator>
       <TrackListFlow.Screen name="TrackList" component={TrackListScreen} />
       <TrackListFlow.Screen name="TrackDetail" component={TrackDetailScreen} />
     </TrackListFlow.Navigator>

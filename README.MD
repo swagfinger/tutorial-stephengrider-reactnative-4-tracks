@@ -73,6 +73,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 - react navigation is now version @6 https://reactnavigation.org/
 
+- Pass params to a route by putting them in an object as a second parameter to the navigation.navigate function: navigation.navigate('RouteName', { /_ params go here _/ })
+- Read the params in your screen component: route.params.
+
 -<App> creates a ref to 'navigator' which it receives from react native, and sets it on 'setNavigator' (the imported navigator function)
 
 - using NavigationEvents <NavigationEvents onWillBlur={clearErrorMessage} /> to clear messages before switching screens
