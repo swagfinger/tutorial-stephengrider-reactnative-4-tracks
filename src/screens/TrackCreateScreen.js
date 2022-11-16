@@ -18,19 +18,23 @@ const TrackCreateScreen = () => {
 
   console.log('isFocused:', isFocused);
 
-  const { state, addLocation } = useContext(LocationContext);
+  //destruct recording off state...
+  const {
+    state: { recording },
+    addLocation
+  } = useContext(LocationContext);
 
   //referencing same function
   const callback = useCallback(
     (location) => {
-      addLocation(location, state.recording);
+      addLocation(location, recording);
     },
-    [state.recording]
+    [recording]
   );
   //takes isFocused, a callback
   //callback function is called on each location update.
   //callback receives an object of type LocationObject { coords, timestamp, mocked } as the first argument.
-  const [err] = useLocation(isFocused, callback);
+  const [err] = useLocation(isFocused || recording, callback);
 
   return (
     <SafeAreaView>
