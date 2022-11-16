@@ -39,6 +39,10 @@ NB:
 
 - react-native-elements has been changed to @rneui/themed
 
+```js
+import { Input, Button } from '@rneui/themed';
+```
+
 ```
 npm install @rneui/themed @rneui/base --legacy-peer-deps
 ```
@@ -117,6 +121,16 @@ const startWatching = async () => {
     setErr(e);
   }
 };
+```
+
+### check if page is focused
+
+- https://reactnavigation.org/docs/use-is-focused/
+
+```js
+import { useIsFocused } from '@react-navigation/native';
+
+const isFocused = useIsFocused();
 ```
 
 ### authentication
