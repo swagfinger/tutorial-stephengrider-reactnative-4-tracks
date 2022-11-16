@@ -13,8 +13,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 //need access to state to see if there is token
-
 import { Context } from './context/AuthContext';
+
+import { FontAwesome } from '@expo/vector-icons';
 
 const LoginFlow = createNativeStackNavigator();
 function LoginFlowScreen() {
@@ -40,9 +41,30 @@ const MainFlow = createBottomTabNavigator();
 function MainFlowScreen() {
   return (
     <MainFlow.Navigator screenOptions={{ headerShown: false }}>
-      <MainFlow.Screen name="TrackListFlow" component={TrackListFlowScreen} />
-      <MainFlow.Screen name="TrackCreate" component={TrackCreateScreen} />
-      <MainFlow.Screen name="Account" component={AccountScreen} />
+      <MainFlow.Screen
+        name="TrackListFlow"
+        component={TrackListFlowScreen}
+        options={{
+          tabBarLabel: 'Tracks',
+          tabBarIcon: () => <FontAwesome name="th-list" size={20} />
+        }}
+      />
+      <MainFlow.Screen
+        name="TrackCreate"
+        component={TrackCreateScreen}
+        options={{
+          tabBarLabel: 'Add Track',
+          tabBarIcon: () => <FontAwesome name="plus" size={20} />
+        }}
+      />
+      <MainFlow.Screen
+        name="Account"
+        component={AccountScreen}
+        options={{
+          tabBarLabel: 'Account',
+          tabBarIcon: () => <FontAwesome name="gear" size={20} />
+        }}
+      />
     </MainFlow.Navigator>
   );
 }
