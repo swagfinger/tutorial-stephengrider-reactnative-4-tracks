@@ -137,6 +137,10 @@ const isFocused = useIsFocused();
 
 https://reactnavigation.org/docs/auth-flow
 
+### ListItem
+
+- https://reactnativeelements.com/docs/listitem/
+
 ### todo:
 
 - when sign-in/signout looses focus, the clear content script was removed and still needs to be readded.

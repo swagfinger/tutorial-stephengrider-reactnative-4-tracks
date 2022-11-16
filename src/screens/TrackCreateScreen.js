@@ -16,7 +16,7 @@ import TrackForm from '../components/TrackForm';
 const TrackCreateScreen = () => {
   const isFocused = useIsFocused();
 
-  console.log('isFocused:', isFocused);
+  console.log('TrackCreateScreen isFocused:', isFocused);
 
   //destruct recording off state...
   const { state, addLocation } = useContext(LocationContext);
