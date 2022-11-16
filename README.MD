@@ -97,10 +97,19 @@ npx expo-cli install expo-location
 
 ### Location Request
 
+- deprecated: awaitRequestPermissionsAsync()
+- updated: requestForegroundPermissionsAsync()
+
 ```js
+import {
+  requestForegroundPermissionsAsync,
+  watchPositionAsync,
+  Accuracy
+} from 'expo-location';
+
 const startWatching = async () => {
   try {
-    const { granted } = await requestPermissionsAsync();
+    const { granted } = await requestForegroundPermissionsAsync();
     if (!granted) {
       throw new Error('Location permission not granted');
     }
