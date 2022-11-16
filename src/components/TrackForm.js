@@ -11,7 +11,7 @@ const TrackForm = () => {
   const { state, startRecording, stopRecording, changeName } =
     useContext(LocationContext);
 
-  const [saveTrack] = useSaveTrack;
+  const [saveTrack] = useSaveTrack();
 
   //pulling off 'name', 'recording', 'locations' from 'state'
   const { name, recording, locations } = state;
