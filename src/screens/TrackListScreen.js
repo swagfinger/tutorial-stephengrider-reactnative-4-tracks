@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -16,9 +16,12 @@ const TrackListScreen = ({ navigation }) => {
   const isFocused = useIsFocused();
 
   const { state, fetchTracks } = useContext(TrackContext);
-  if (isFocused) {
-    fetchTracks();
-  }
+
+  useEffect(() => {
+    if (isFocused) {
+      fetchTracks();
+    }
+  }, [isFocused]);
 
   return (
     <>
@@ -33,7 +36,11 @@ const TrackListScreen = ({ navigation }) => {
         keyExtractor={(item) => item._id}
         renderItem={({ item }) => {
           return (
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('TrackDetail', { _id: item._id });
+              }}
+            >
               <ListItem>
                 <ListItem.Content>
                   <ListItem.Title>{item.name}</ListItem.Title>
