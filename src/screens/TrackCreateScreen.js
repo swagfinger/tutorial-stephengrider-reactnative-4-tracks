@@ -19,10 +19,8 @@ const TrackCreateScreen = () => {
   console.log('isFocused:', isFocused);
 
   //destruct recording off state...
-  const {
-    state: { recording },
-    addLocation
-  } = useContext(LocationContext);
+  const { state, addLocation } = useContext(LocationContext);
+  const { recording } = state;
 
   //referencing same function
   const callback = useCallback(
