@@ -1,17 +1,38 @@
-import React, { useEffect, useState } from 'react';
+//import '../_mockLocation'; //testing //for realtime instead of fake data, comment out
+import React, { useEffect, useState, useContext } from 'react';
 import { StyleSheet } from 'react-native';
 import { Text } from '@rneui/themed';
 import Map from '../components/Map';
 //safearea
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { requestForegroundPermissionsAsync } from 'expo-location'; //requestPermissions is deprecated
+
+import {
+  requestForegroundPermissionsAsync,
+  watchPositionAsync,
+  Accuracy
+} from 'expo-location'; //requestPermissions is deprecated
+
+import { Context as LocationContext } from '../context/LocationContext';
 
 const TrackCreateScreen = () => {
   const [err, setErr] = useState(null);
+  const { addLocation } = useContext(LocationContext);
 
   const startWatching = async () => {
     try {
       const { granted } = await requestForegroundPermissionsAsync(); //request in the startWatching method
+      await watchPositionAsync(
+        {
+          accuracy: Accuracy.BestForNavigation,
+          timeInterval: 1000,
+          distanceInterval: 10
+        },
+        (location) => {
+          // console.log('location: ', location);
+          addLocation(location);
+        }
+      );
+
       if (!granted) {
         throw new Error('Location permission not granted');
       }
